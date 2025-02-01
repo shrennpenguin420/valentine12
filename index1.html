@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine?</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 100px;
+            background-color: #ffe6f2;
+            color: #ff0055;
+            transition: background 0.5s ease;
+        }
+        h1 {
+            font-size: 2rem;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 1rem;
+            margin: 10px;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: transform 0.2s ease, font-size 0.2s ease;
+        }
+        .yes {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+        .no {
+            background-color: #f44336; /* Red */
+            color: white;
+        }
+        .video-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: black;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+            flex-direction: column;
+        }
+        .video-container iframe, .video-container video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            position: absolute;
+        }
+        .caption {
+            color: white;
+            font-size: 2rem;
+            margin-top: 20px;
+            text-shadow: 2px 2px 5px black;
+            position: relative;
+            z-index: 10;
+        }
+    </style>
+</head>
+<body>
+    <h1>Will you be my Valentine? ❤️</h1>
+    <button class="yes">Yes</button>
+    <button class="no">No</button>
+
+    <div class="video-container" style="display: none;">
+        <iframe src="https://www.youtube.com/embed/m1kCV0bCie4?autoplay=1&mute=1" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <video autoplay muted loop>
+            <source src="vecteezy_pink-sakura-flowers-and-lobe-fall-down-on-the-black-screen_12279650.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="caption">Us?? ❤️</div>
+    </div>
+
+    <script>
+        const yesButton = document.querySelector('.yes');
+        const noButton = document.querySelector('.no');
+        const videoContainer = document.querySelector('.video-container');
+
+        noButton.addEventListener('click', () => {
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = currentSize + 5 + 'px'; // Increase font size
+        });
+
+        noButton.addEventListener('mouseover', () => {
+            const currentSize = parseFloat(window.getComputedStyle(yesButton).fontSize);
+            yesButton.style.fontSize = currentSize + 2 + 'px'; // Gradually increase font size
+            noButton.style.transform = 'translateX(' + (Math.random() * 200 - 100) + 'px)';
+            noButton.style.transform += 'translateY(' + (Math.random() * 200 - 100) + 'px)';
+        });
+
+        yesButton.addEventListener('click', () => {
+            alert('Yay! ❤️ You made my day!');
+            videoContainer.style.display = 'flex';
+            console.log('She said YES! 🎉');
+        });
+    </script>
+</body>
+</html>
